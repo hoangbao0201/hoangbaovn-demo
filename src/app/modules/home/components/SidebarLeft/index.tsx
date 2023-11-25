@@ -4,7 +4,7 @@ import Link from "next/link";
 const SideBarLeft = () => {
 
     return (
-        <aside className="sticky top-[72px]">
+        <aside className="sticky top-[72px] px-2">
             <ul className="">
                 {
                     SideBarNavigationMainData.map((item, index) => {

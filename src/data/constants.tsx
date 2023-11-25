@@ -18,7 +18,7 @@ export const SideBarNavigationMainData = [
     },
     {
         title: 'Chủ đề',
-        link: "/",
+        link: "/tags",
         icon: <IconTopic size={22} />
     },
 ];

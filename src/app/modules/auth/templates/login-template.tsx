@@ -1,8 +1,8 @@
 import Login from "../components/login";
 
-const LoginPageTemplate = () => {
+const LoginTemplate = () => {
 
     return <Login />
 }
 
-export default LoginPageTemplate;
+export default LoginTemplate;

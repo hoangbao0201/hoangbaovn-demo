@@ -1,8 +1,12 @@
+"use client"
+
 import Link from "next/link";
-import SearchMain from "../../components/SearchMain";
-import { IconBell, IconPen } from "@/app/modules/common/icons";
-import UserDropdown from "../../components/UserDropdown";
+
 import clsx from "clsx";
+import { useDispatch, useSelector } from "react-redux";
+import SearchMain from "../../components/SearchMain";
+import UserDropdown from "../../components/UserDropdown";
+import { IconBell, IconPen } from "@/app/modules/common/icons";
 
 
 interface HeaderProps {
@@ -11,10 +15,16 @@ interface HeaderProps {
 const Header = ({ isDynamic = true }) => {
 
     const isLogin = false;
+    // const dispatch = useDispatch();
+    // const data = useSelector(
+    //     (state: any) => state.user
+    // );
+
+    // console.log(data);
 
     return (
         <header className={clsx("w-full border-b bg-white shadow-sm z-30 top-0 left-0 right-0", { "sticky":isDynamic })}>
-            <div className="max-w-7xl w-full min-h-[60px] mx-auto px-3 py-2 flex items-center">
+            <div className="max-w-7xl w-full h-[60px] mx-auto px-3 py-2 flex items-center">
 
                 <p className="text-lg font-semibold flex flex-shrink-0 items-center">
                     <Link href={`/`}>HOANGBAO</Link>
@@ -42,7 +52,7 @@ const Header = ({ isDynamic = true }) => {
                                 <UserDropdown />
                             ) : (
                                 <Link href={`/auth/login`}>
-                                    <span className="py-2 px-3 rounded-md cursor-pointer bg-blue-600 hover:bg-blue-700 text-white">login</span>
+                                    <span className="py-2 px-3 rounded-md cursor-pointer bg-blue-600 hover:bg-blue-700 text-white">Đăng nhập</span>
                                 </Link>
                             )
                         }

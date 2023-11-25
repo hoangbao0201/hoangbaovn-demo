@@ -5,7 +5,7 @@ import { Dispatch, Fragment, ReactNode, SetStateAction } from "react";
 interface ModalProps {
     children: ReactNode;
     isOpen: boolean;
-    size?: "small" | "medium" | "large";
+    size?: "small" | "medium" | "large" | "extra";
     setIsOpen: Dispatch<SetStateAction<boolean>>;
 }
 const Modal = ({
@@ -46,7 +46,8 @@ const Modal = ({
                                     {
                                         "max-w-md": size === "small",
                                         "max-w-xl": size === "medium",
-                                        "max-w-3xl": size === "large",
+                                        "max-w-3xl h-auto": size === "large",
+                                        "max-w-7xl h-auto": size === "extra"
                                     }
                                 )}
                             >

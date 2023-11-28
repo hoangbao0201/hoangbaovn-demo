@@ -1,11 +1,12 @@
 import { Dialog, Transition } from "@headlessui/react";
 import clsx from "clsx";
 import { Dispatch, Fragment, ReactNode, SetStateAction } from "react";
+import { IconClose } from "../icons";
 
 interface ModalProps {
     children: ReactNode;
     isOpen: boolean;
-    size?: "small" | "medium" | "large" | "extra";
+    size?: "small" | "medium" | "large" | "extra" | "full";
     setIsOpen: Dispatch<SetStateAction<boolean>>;
 }
 const Modal = ({
@@ -30,7 +31,12 @@ const Modal = ({
                 </Transition.Child>
 
                 <div className="fixed inset-0">
-                    <div className="flex min-h-full justify-center p-4 text- mt-20">
+                    <div className={clsx(
+                        "flex min-h-full justify-center md:p-4",
+                        {
+                            "mt-20": size !== "full"
+                        }
+                    )}>
                         <Transition.Child
                             as={Fragment}
                             enter="ease-out duration-300"
@@ -42,21 +48,19 @@ const Modal = ({
                         >
                             <Dialog.Panel
                                 className={clsx(
-                                    "flex flex-col justify-start w-full h-full transform overflow-auto bg-white rounded-lg p-10 text-left align-middle shadow-xl transition-all max-h-[65vh]",
+                                    "relative flex flex-col justify-start w-full h-full transform overflow-hidden bg-white rounded-lg md:p-10 p-4 text-left align-middle shadow-xl transition-all max-h-[65vh]",
                                     {
                                         "max-w-md": size === "small",
                                         "max-w-xl": size === "medium",
                                         "max-w-3xl h-auto": size === "large",
-                                        "max-w-7xl h-auto": size === "extra"
+                                        "max-w-7xl h-auto": size === "extra",
+                                        "max-w-full max-h-full h-max": size === "full"
                                     }
                                 )}
                             >
-                                {/* <Dialog.Title
-                                    as="h3"
-                                    className="text-lg font-medium leading-6 text-gray-900"
-                                >
-                                    Payment successful
-                                </Dialog.Title> */}
+                                <button onClick={() => setIsOpen(false)} className="absolute right-4 top-3 hover:bg-gray-200 p-2 rounded-full outline-none">
+                                    <IconClose className="w-5 h-5 block"/>
+                                </button>
                                 {children}
                             </Dialog.Panel>
                         </Transition.Child>

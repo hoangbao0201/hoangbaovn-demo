@@ -2,41 +2,41 @@
 
 import { ChangeEvent, useState } from "react";
 
-import CreatableSelect from "react-select/creatable";
+import { useSession } from "next-auth/react";
 import ReactMarkdown from "react-markdown";
 import Editor from "react-markdown-editor-lite";
 import "react-markdown-editor-lite/lib/index.css";
-
-import Modal from "@/app/modules/common/components/modal";
-import { textToSlug } from "@/app/modules/util/testToSlug";
-import blogService, { DataCreateBlogProps } from "@/lib/services/blog.service";
+import CreatableSelect from "react-select/creatable";
 import { ActionMeta, MultiValue } from "react-select";
 
-interface Option {
-    name: string;
-    label: string;
-}
+import Modal from "@/app/modules/common/components/modal";
+import blogService, { DataCreateBlogProps } from "@/lib/services/blog.service";
+import { textToSlug } from "@/app/modules/util/testToSlug";
+import { IconAlertCircle } from "@/app/modules/common/icons";
 
-// const optionTagDefault: Option[] = [
-//     { name: "reactjs", label: "ReactJS" },
-//     { name: "nodejs", label: "NodeJS" },
-//     { name: "ux", label: "UX" },
-//     { name: "ui", label: "UI" },
-// ];
+interface Option {
+    label: string;
+    value: string;
+}
+interface StateDataBlogProps {
+    title: string;
+    summary: string;
+    content: string;
+    published: boolean;
+}
 
 const CreateBlog = () => {
     const [isShowEditBlogDetail, setIsShowEditBlogDetail] = useState(false);
-    const [dataBlog, setDataBlog] = useState<DataCreateBlogProps>({
+    const [dataBlog, setDataBlog] = useState<StateDataBlogProps>({
         title: "",
         summary: "",
         content: "",
         published: true,
-        blogTags: [],
     });
     const [selectedTags, setSelectedTags] = useState<MultiValue<Option>>([]);
     const [optionTagDefault, setOptionTagDefault] = useState<
         MultiValue<Option>
-    >([{ name: "reactjs", label: "ReactJS" }]);
+    >([{ label: "ReactJS", value: "reactjs" }]);
     const [fileThumbnail, setFileThumbnail] = useState<{
         dataImage: File | null
         urlImage: string
@@ -44,6 +44,9 @@ const CreateBlog = () => {
         dataImage: null,
         urlImage: ""
     });
+
+    // SESSION
+    const { data: session, status } = useSession();
 
     // Onchange Thumbnail Blog 
     const eventOnchangeThumbnailBlog = async (e: ChangeEvent<HTMLInputElement>) => {
@@ -72,9 +75,9 @@ const CreateBlog = () => {
         selectedOptions: MultiValue<Option>,
         actionMeta: ActionMeta<Option>
     ) => {
-        // setSelectedTags(selectedOptions);
-        console.log(selectedOptions);
-        console.log(actionMeta);
+        setSelectedTags(selectedOptions);
+        console.log(selectedOptions)
+        console.log(actionMeta)
     };
 
     // Onchange Editor
@@ -93,13 +96,31 @@ const CreateBlog = () => {
 
     // Create Blog
     const handleCreateBlog = async () => {
+
+        // console.log(selectedTags)
+
+        if(!session || status !== "authenticated") {
+            return;
+        }
+
+        const convertTags : { name: string, slug: string }[] = selectedTags.map(item => {
+            return {
+                name: item.label,
+                slug: textToSlug(item.label) || ""
+            }
+        });
+        
         try {
-            const createBlogRes = await blogService.createBlog(dataBlog);
+            const createBlogRes = await blogService.createBlog({
+                data: {
+                    ...dataBlog,
+                    blogTags: convertTags
+                },
+                token: session.backendTokens.accessToken
+            });
             console.log(createBlogRes);
         } catch (error) {}
     };
-
-    // console.log(selectedTags);
 
     return (
         <main className="">
@@ -145,7 +166,7 @@ const CreateBlog = () => {
             </div>
 
             <Modal
-                size="extra"
+                size="full"
                 isOpen={isShowEditBlogDetail}
                 setIsOpen={setIsShowEditBlogDetail}
             >
@@ -189,13 +210,17 @@ const CreateBlog = () => {
                             />
                             
                         </div>
-                        <div className="md:w-3/5">
+                        <div className="md:w-3/5 flex flex-col justify-between">
                             <div className="">
-        
+
+                                <div className="flex items-center py-1">
+                                    <IconAlertCircle className="w-4 h-4 stroke-blue-500 block"/>
+                                    <span className="ml-2 text-sm text-gray-700">Không quá 3 thẻ, không quá 15 kí tự</span>
+                                </div>
                                 <CreatableSelect
                                     isMulti
-                                    // getOptionLabel={option => option.name}
-                                    // getOptionValue={option => option.label}
+                                    // getOptionLabel={option => option.label}
+                                    // getOptionValue={option => option.name}
                                     // formatOptionLabel={option => option.name ? option.label : `${option.label} Whatever`}
                                     formatCreateLabel={(inputValue) => `Tạo tag ${inputValue}`}
                                     isValidNewOption={(value) =>
@@ -237,12 +262,18 @@ const CreateBlog = () => {
                                     </label>
                                 </div>
                             </div>
-                            <div className="mt-10 border-t py-5 flex bottom-0 justify-end">
+                            <div className="mt-10 py-5 flex bottom-0 justify-end space-x-2">
                                 <button
                                     onClick={handleCreateBlog}
-                                    className="border rounded-md py-2 px-3 bg-green-600 text-white"
+                                    className="border rounded-md py-2 px-3 bg-green-600 hover:bg-green-700 text-white"
                                 >
                                     Xuất bản ngay
+                                </button>
+                                <button
+                                    onClick={() => setIsShowEditBlogDetail(false)}
+                                    className="border rounded-md py-2 px-3 hover:bg-slate-100 text-black"
+                                >
+                                    Thoát
                                 </button>
                             </div>
                         </div>

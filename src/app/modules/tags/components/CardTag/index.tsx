@@ -1,6 +1,10 @@
+import { GetTagsProps } from "@/lib/services/tag.service";
 import Link from "next/link";
 
-const CardTag = () => {
+interface CardTagProps {
+    tag: GetTagsProps
+}
+const CardTag = ({ tag } : CardTagProps) => {
 
     return (
         <div className="px-2 mb-4">
@@ -8,11 +12,11 @@ const CardTag = () => {
                 <div className="flex items-end justify-between line-clamp-1 mb-2">
                     <Link
                         className=""
-                        href={`/tags/hello`}
+                        href={`/tags/${tag.slug}`}
                     >
-                        <h2 className="font-semibold text-lg">#tag</h2>
+                        <h2 className="font-semibold text-lg">#{tag.name}</h2>
                     </Link>
-                    <span className="text-sm text-gray-500">12304 bài viết</span>
+                    <span className="text-sm text-gray-500">{tag._count.blogTags} bài viết</span>
                 </div>
                 <p className="mb-3 line-clamp-3 text-sm">
                     Tutorial is a general purpose tag. We welcome all types of tutorial - code related or not! It is all about learning, and using tutorials to teach others!

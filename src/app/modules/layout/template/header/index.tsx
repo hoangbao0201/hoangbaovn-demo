@@ -3,7 +3,8 @@
 import Link from "next/link";
 
 import clsx from "clsx";
-import { useDispatch, useSelector } from "react-redux";
+import { useSession } from "next-auth/react";
+
 import SearchMain from "../../components/SearchMain";
 import UserDropdown from "../../components/UserDropdown";
 import { IconBell, IconPen } from "@/app/modules/common/icons";
@@ -14,17 +15,11 @@ interface HeaderProps {
 }
 const Header = ({ isDynamic = true }) => {
 
-    const isLogin = false;
-    // const dispatch = useDispatch();
-    // const data = useSelector(
-    //     (state: any) => state.user
-    // );
-
-    // console.log(data);
+    const { data: session, status } = useSession();
 
     return (
-        <header className={clsx("w-full border-b bg-white shadow-sm z-30 top-0 left-0 right-0", { "sticky":isDynamic })}>
-            <div className="max-w-7xl w-full h-[60px] mx-auto px-3 py-2 flex items-center">
+        <header className={clsx("w-full bg-white shadow-sm z-30 top-0 left-0 right-0", { "sticky":isDynamic })}>
+            <div className="max-w-7xl w-full h-[60px] mx-auto px-3 flex items-center">
 
                 <p className="text-lg font-semibold flex flex-shrink-0 items-center">
                     <Link href={`/`}>HOANGBAO</Link>
@@ -48,7 +43,7 @@ const Header = ({ isDynamic = true }) => {
                             </i>
                         </Link>
                         {
-                            isLogin ? (
+                            status == "authenticated" ? (
                                 <UserDropdown />
                             ) : (
                                 <Link href={`/auth/login`}>

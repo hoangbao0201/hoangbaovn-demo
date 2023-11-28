@@ -18,7 +18,7 @@ const TagsBlog = ({listTag, className} : TagsBlogProps) => {
                         listTag.map((item, index) => {
                             return (
                                 <li key={index} className="">
-                                    <Link href={`/tag/${item.tags.slug}`}>
+                                    <Link href={`/tags/${item.tags.slug}`}>
                                         <span className={`tag tag-${index+1} block`}>#{item.tags.name}</span>
                                     </Link>
                                 </li>

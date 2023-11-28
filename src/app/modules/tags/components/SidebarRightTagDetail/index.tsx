@@ -1,7 +1,7 @@
 const SidebarRightTagDetail = () => {
 
     return (
-        <div className="">SidebarRightTagDetail</div>
+        <div className="sticky top-[72px]">SidebarRightTagDetail</div>
     )
 }
 

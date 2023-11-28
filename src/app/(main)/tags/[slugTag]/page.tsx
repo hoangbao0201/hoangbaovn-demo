@@ -6,10 +6,11 @@ import blogService from "@/lib/services/blog.service";
 import TagDetailTemplate from "@/app/modules/tags/templates/tagsdetail-template";
 
 type Props = {
-    params: { handle: string }
+    params: { slugTag: string }
 }
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-    const blogs = await blogService.getBlogs({});
+
+    const blogs = await blogService.findAll(`tag=${params.slugTag}`);
 
     if (!blogs) {
         notFound();
@@ -20,8 +21,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     };
 }
 
-const TagDetailPage = async () => {
-    const dataBlogs : { success: boolean, blogs: BlogsGetProps[] } = await blogService.getBlogs({});
+const TagDetailPage = async ({ params }: Props) => {
+    const dataBlogs : { success: boolean, blogs: BlogsGetProps[] } = await blogService.findAll(`tag=${params.slugTag}`);
     
     return (
         <TagDetailTemplate blogs={dataBlogs.blogs}/>

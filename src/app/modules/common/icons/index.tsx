@@ -411,17 +411,34 @@ export const IconSearch: React.FC<IconProps> = ({
     return (
         <>
             <svg
-                stroke="currentColor"
-                fill="currentColor"
-                strokeWidth="0"
                 viewBox="0 0 24 24"
-                aria-hidden="true"
+                fill="none"
                 width={size}
                 height={size}
                 {...attributes}
                 xmlns="http://www.w3.org/2000/svg"
             >
-                <path d="M19.023 16.977a35.13 35.13 0 0 1-1.367-1.384c-.372-.378-.596-.653-.596-.653l-2.8-1.337A6.962 6.962 0 0 0 16 9c0-3.859-3.14-7-7-7S2 5.141 2 9s3.14 7 7 7c1.763 0 3.37-.66 4.603-1.739l1.337 2.8s.275.224.653.596c.387.363.896.854 1.384 1.367l1.358 1.392.604.646 2.121-2.121-.646-.604c-.379-.372-.885-.866-1.391-1.36zM9 14c-2.757 0-5-2.243-5-5s2.243-5 5-5 5 2.243 5 5-2.243 5-5 5z"></path>
+                <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+                <g
+                    id="SVGRepo_tracerCarrier"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                ></g>
+                <g id="SVGRepo_iconCarrier">
+                    {" "}
+                    <path
+                        d="M15 15L21 21"
+                        stroke="#323232"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                    ></path>{" "}
+                    <path
+                        d="M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z"
+                        stroke="#323232"
+                        strokeWidth="2"
+                    ></path>{" "}
+                </g>
             </svg>
         </>
     );
@@ -508,12 +525,7 @@ export const IconVerify: React.FC<IconProps> = ({
 }) => {
     return (
         <>
-            <svg
-                viewBox="0 0 12 13"
-                width={size}
-                height={size}
-                {...attributes}
-            >
+            <svg viewBox="0 0 12 13" width={size} height={size} {...attributes}>
                 <title>Tài khoản đã xác minh</title>
                 <g fillRule="evenodd" transform="translate(-98 -917)">
                     <path d="m106.853 922.354-3.5 3.5a.499.499 0 0 1-.706 0l-1.5-1.5a.5.5 0 1 1 .706-.708l1.147 1.147 3.147-3.147a.5.5 0 1 1 .706.708m3.078 2.295-.589-1.149.588-1.15a.633.633 0 0 0-.219-.82l-1.085-.7-.065-1.287a.627.627 0 0 0-.6-.603l-1.29-.066-.703-1.087a.636.636 0 0 0-.82-.217l-1.148.588-1.15-.588a.631.631 0 0 0-.82.22l-.701 1.085-1.289.065a.626.626 0 0 0-.6.6l-.066 1.29-1.088.702a.634.634 0 0 0-.216.82l.588 1.149-.588 1.15a.632.632 0 0 0 .219.819l1.085.701.065 1.286c.014.33.274.59.6.604l1.29.065.703 1.088c.177.27.53.362.82.216l1.148-.588 1.15.589a.629.629 0 0 0 .82-.22l.701-1.085 1.286-.064a.627.627 0 0 0 .604-.601l.065-1.29 1.088-.703a.633.633 0 0 0 .216-.819"></path>
@@ -523,6 +535,72 @@ export const IconVerify: React.FC<IconProps> = ({
     );
 };
 
+export const IconAlertCircle: React.FC<IconProps> = ({
+    size = "20",
+    color = "currentColor",
+    ...attributes
+}) => {
+    return (
+        <>
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                width={size}
+                height={size}
+                {...attributes}
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+            >
+                <circle cx="12" cy="12" r="10" />
+                <line x1="12" x2="12" y1="8" y2="12" />
+                <line x1="12" x2="12.01" y1="16" y2="16" />
+            </svg>
+        </>
+    );
+};
+
+export const IconClose: React.FC<IconProps> = ({
+    size = "20",
+    color = "currentColor",
+    ...attributes
+}) => {
+    return (
+        <>
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width={size}
+                height={size}
+                {...attributes}
+                viewBox="0 0 384 512"
+            >
+                <path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
+            </svg>
+        </>
+    );
+};
+
+export const IconChevronRight: React.FC<IconProps> = ({
+    size = "20",
+    color = "currentColor",
+    ...attributes
+}) => {
+    return (
+        <>
+            <svg
+                width={size}
+                height={size}
+                {...attributes}
+                viewBox="0 0 1792 1792"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <path d="M1363 877l-742 742q-19 19-45 19t-45-19l-166-166q-19-19-19-45t19-45l531-531-531-531q-19-19-19-45t19-45l166-166q19-19 45-19t45 19l742 742q19 19 19 45t-19 45z" />
+            </svg>
+        </>
+    );
+};
 export const Icon: React.FC<IconProps> = ({
     size = "20",
     color = "currentColor",

@@ -4,8 +4,7 @@ import Image from "next/image";
 const SideBarRight = () => {
 
     return (
-        <div className="md:px-2 mb-4 relative">
-
+        <aside className="sticky top-[72px]">
             <div className="bg-white rounded-lg shadow-sm sticky top-[72px] mb-4">
                 <div>
                     <div className="px-3 py-4 flex items-center text-lg font-semibold border-b">
@@ -44,7 +43,7 @@ const SideBarRight = () => {
                 </div>
             </div>
             
-        </div>
+        </aside>
     )
 }
 

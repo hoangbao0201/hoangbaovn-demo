@@ -1,7 +1,11 @@
 import { Fragment } from "react";
 import CardTag from "../components/CardTag";
+import { GetTagsProps } from "@/lib/services/tag.service";
 
-const TagsTemplate = () => {
+interface TagsTemplateProps {
+    tags: GetTagsProps[]
+}
+const TagsTemplate = ({ tags } : TagsTemplateProps) => {
 
     return (
         <div className="max-w-7xl w-full min-h-screen mx-auto mb-4">
@@ -12,10 +16,10 @@ const TagsTemplate = () => {
                     </div>
                     <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 px-1">
                         {
-                            [0,1,2,3,4,5,6,7,8,9.10,11,12].map((tag) => {
+                            tags && tags.map((tag) => {
                                 return (
-                                    <Fragment key={tag}>
-                                        <CardTag />
+                                    <Fragment key={tag.tagId}>
+                                        <CardTag tag={tag}/>
                                     </Fragment>
                                 )
                             })

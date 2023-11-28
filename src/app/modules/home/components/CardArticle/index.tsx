@@ -22,7 +22,7 @@ interface CardArticleProps {
 const CardArticle = ({blog} : CardArticleProps) => {
 
     return (
-        <article className="md:px-2 flex mb-4 relative">
+        <article className="md:px-3 flex mb-4 relative">
             <div className="bg-white md:rounded-md w-full overflow-hidden shadow-sm outline-2 outline-blue-500 hover:outline-dashed">
                 <div className="flex px-4 pt-4">
                     <Link href={`/`}>
@@ -61,7 +61,7 @@ const CardArticle = ({blog} : CardArticleProps) => {
                 </div>
                 <div className="px-4 my-3">
                     <h2 className="text-2xl font-semibold mb-2 line-clamp-2">
-                        <Link href={`/blog/${blog.slug}-${blog.blogId}`} className="hover:underline">
+                        <Link href={`/blog/${blog.slug}-${blog.blogId}`} className="hover:underline hover:text-blue-800">
                             {blog.title}
                         </Link>
                     </h2>

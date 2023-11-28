@@ -2,7 +2,7 @@
 const SidebarLeftTagDetail = () => {
 
     return (
-        <div className="">SidebarLeftTagDetail</div>
+        <div className="sticky top-[72px]">SidebarLeftTagDetail</div>
     )
 }
 

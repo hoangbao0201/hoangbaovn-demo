@@ -19,6 +19,10 @@ interface ContentBlogDetailProps {
     blog: GetBlogsProps
 }
 const ContentBlogDetail = ({ blog } : ContentBlogDetailProps) => {
+
+    if(!blog) {
+        return null;
+    }
     return (
         <div className="md:px-3">
             <div className="bg-white rounded-md shadow-sm overflow-hidden">

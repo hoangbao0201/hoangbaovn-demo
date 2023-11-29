@@ -1,6 +1,7 @@
 import axios from "axios";
 import { API_BASE_URL } from "../data";
 
+
 class UserService {
 
     async loginUser(accout: string, password: string) : Promise<any> {
@@ -32,6 +33,24 @@ class UserService {
                 },
             });
             return user.data;
+        } catch (error) {
+            return {
+                success: false,
+                message: "error user successful",
+                error: error
+            };
+        }
+    }
+
+    async getUsersByAdmin(token: string) : Promise<any> {
+        try {
+            const users = await axios.get(`${API_BASE_URL}/api/users/admin`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+            });
+            return users.data;
         } catch (error) {
             return {
                 success: false,

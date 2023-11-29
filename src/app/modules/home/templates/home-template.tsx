@@ -22,7 +22,7 @@ const HomeTemplate = ({ blogs } : HomeTemplateProps) => {
                     <Suspense fallback={<SkeletonCardItem />}>
                         <>
                             {
-                                blogs.map((item, index) => {
+                                blogs && blogs.map((item, index) => {
                                     return (
                                         <Fragment key={index}>
                                             <CardArticle blog={item} />

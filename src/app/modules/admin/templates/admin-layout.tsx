@@ -16,33 +16,52 @@ const AdminLayout = ({ children } : AdminLayoutProps) => {
 
     return (
         <main>
-            <div className="">
-                <div className="w-full h-[60px] px-4 flex items-center fixed top-0 ml-[300px] border-b bg-white">Header</div>
-                <div className="w-full max-w-[300px] h-screen fixed top-0 left-0 bottom-0 border-r bg-white">
-                    <div className="flex items-center px-4 h-[60px] border-b mb-3">
-                        <Image
-                            alt="ảnh người dùng"
-                            src={"/images/avatar_user.jpg"}
-                            width={40}
-                            height={40}
-                            title="hoangbao"
-                            className="w-10 h-1w-10 rounded-full overflow-hidden block object-cover"
-                        />
-                        <span className="ml-2">{session?.user.name}</span>
+            <div className="h-full">
+                <div className="fixed top-0 right-0 left-[300px] border-b bg-white z-10">
+                    <div className="px-4 flex items-center h-[60px]">
+                        <Link href={`/`} target="_blank">
+                            HOANGBAO
+                        </Link>
                     </div>
+                </div>
+                <div className="w-full max-w-[300px] h-screen fixed top-0 left-0 bottom-0 border-r bg-white">
+                    <Link href={`/admin/dashboarch`}>
+                        <div className="flex items-center px-4 h-[60px] border-b mb-3">
+                            <Image
+                                alt="ảnh người dùng"
+                                src={"/images/avatar_user.jpg"}
+                                width={40}
+                                height={40}
+                                title="hoangbao"
+                                className="w-10 h-10 rounded-full overflow-hidden block object-cover"
+                            />
+                            <span className="ml-2">{session?.user.name}</span>
+                        </div>
+                    </Link>
                     <div>
                         {
                             SideBarAdminLayoutData.map((item, index) => {
                                 return (
-                                    <Link href={`${item.link}`}>
-                                        <div className="mx-3 px-4 py-2 rounded-md hover:bg-gray-100">{item.title}</div>
-                                    </Link>
+                                    <div key={index}>
+                                        <div className="mx-3 px-4 py-2 font-semibold text-sm text-gray-500 uppercase">{item.title}</div>
+                                        {
+                                            item.children.map((child, index) => {
+                                                return (
+                                                    <Link key={index} href={`${child.link}`}>
+                                                        <div className="mx-3 px-4 py-2 rounded-md hover:bg-gray-100 group">
+                                                            <div className="transition-all translate-x-0 group-hover:translate-x-1">{child.title}</div>
+                                                        </div>
+                                                    </Link>
+                                                )
+                                            })
+                                        }
+                                    </div>
                                 )
                             })
                         }
                     </div>
                 </div>
-                <div style={{ height: "calc(100vh - 60px)" }} className="w-full fixed ml-[300px] mt-[60px]">
+                <div className="relative h-screen ml-[300px] pt-[80px] px-5">
                     <div>{children}</div>
                 </div>
             </div>

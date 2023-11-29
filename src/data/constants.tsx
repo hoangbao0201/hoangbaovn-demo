@@ -25,23 +25,13 @@ export const SideBarNavigationMainData = [
 
 export const SideBarAdminLayoutData = [
     {
-        title: 'Trang chủ',
-        link: "/",
-        icon: <IconHome size={22} />
-    },
-    {
-        title: 'Phổ biến',
-        link: "/",
-        icon: <IconPopular size={22} />
-    },
-    {
-        title: 'Lịch sử',
-        link: "/",
-        icon: <IconClock size={22} />
-    },
-    {
-        title: 'Chủ đề',
-        link: "/tags",
-        icon: <IconTopic size={22} />
-    },
+        title: "Quản lí",
+        children: [
+            {
+                title: 'Danh sách người dùng',
+                link: "/admin/list/user",
+                icon: <IconHome size={22} />
+            },
+        ]
+    }
 ];

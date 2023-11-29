@@ -6,7 +6,7 @@ const SkeletonCardItem = ({ count = 4 }: { count?: number }) => {
             {Array.from({ length: count }).map((_, i) => {
                 return (
                     <Fragment key={i}>
-                        <div className="md:px-2 flex mb-4">
+                        <div className="md:px-3 flex mb-4">
                             <div className="w-full bg-white md:rounded-md animate-pulse">
                                 <div className="flex px-4 pt-4">
                                     <div className="w-12 h-12 flex-shrink-0 bg-gray-200 rounded-full dark:bg-gray-700"></div>

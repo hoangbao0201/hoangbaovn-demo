@@ -5,6 +5,7 @@ import SideBarLeft from "../components/SidebarLeft";
 import CardArticle from "../components/CardArticle";
 import SideBarRight from "../components/SidebarRight";
 import SkeletonCardItem from "../../skeletons/components/skeleton-card-item";
+import { API_BASE_URL } from "@/lib/data";
 
 interface HomeTemplateProps {
     blogs: BlogsGetProps[]

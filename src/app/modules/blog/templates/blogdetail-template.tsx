@@ -1,7 +1,9 @@
+import { Suspense } from "react";
 import { GetBlogsProps } from "@/lib/services/blog.service";
 import ContentBlogDetail from "../components/ContentBlogDetail";
 import SidebarLeftBlogDetail from "../components/SidebarLeftBlogDetail";
 import SidebarRightBlogDetail from "../components/SidebarRightBlogDetail";
+import SkeletonCardItem from "../../skeletons/components/skeleton-card-item";
 
 const BlogDetailTemplate = ({ blog }: { blog: GetBlogsProps }) => {
     return (
@@ -14,7 +16,9 @@ const BlogDetailTemplate = ({ blog }: { blog: GetBlogsProps }) => {
                 </div>
 
                 <div className="lg:col-span-8 col-span-full pt-3">
-                    <ContentBlogDetail blog={blog}/>
+                    <Suspense fallback={<SkeletonCardItem />}>
+                        <ContentBlogDetail blog={blog}/>
+                    </Suspense>
                 </div>
 
                 <div className="xl:col-span-3 lg:col-span-4 col-span-full pt-3">

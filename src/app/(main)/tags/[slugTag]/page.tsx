@@ -1,8 +1,7 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { BlogsGetProps } from "@/app/modules/types";
-import blogService from "@/lib/services/blog.service";
+import blogService, { GetBlogsProps } from "@/lib/services/blog.service";
 import TagDetailTemplate from "@/app/modules/tags/templates/tagsdetail-template";
 
 type Props = {
@@ -22,7 +21,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 const TagDetailPage = async ({ params }: Props) => {
-    const dataBlogs : { success: boolean, blogs: BlogsGetProps[] } = await blogService.findAll(`tag=${params.slugTag}`);
+    const dataBlogs : { success: boolean, blogs: GetBlogsProps[] } = await blogService.findAll(`tag=${params.slugTag}`);
     
     return (
         <TagDetailTemplate blogs={dataBlogs.blogs}/>

@@ -39,7 +39,7 @@ const ContentBlogDetail = ({ blog } : ContentBlogDetailProps) => {
                             />
                         </div>
                         <div className="flex md:px-8 px-4 pt-4 mb-5">
-                            <Link href={`/`}>
+                            <Link href={`/user/${blog.author.username}`}>
                                 <AvatarRank rank={1}>
                                     <Image
                                         width={60}
@@ -52,7 +52,7 @@ const ContentBlogDetail = ({ blog } : ContentBlogDetailProps) => {
                             </Link>
                             <div className="ml-3">
                                 <div className="flex items-center mb-1">
-                                    <Link href={`/`}>
+                                    <Link href={`/user/${blog.author.username}`}>
                                         <p className="hover:underline font-medium">
                                             {blog.author.name}
                                         </p>

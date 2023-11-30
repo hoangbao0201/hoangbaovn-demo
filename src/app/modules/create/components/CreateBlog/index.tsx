@@ -10,7 +10,7 @@ import CreatableSelect from "react-select/creatable";
 import { ActionMeta, MultiValue } from "react-select";
 
 import Modal from "@/app/modules/common/components/modal";
-import blogService, { DataCreateBlogProps } from "@/lib/services/blog.service";
+import blogService from "@/lib/services/blog.service";
 import { textToSlug } from "@/app/modules/util/testToSlug";
 import { IconAlertCircle } from "@/app/modules/common/icons";
 

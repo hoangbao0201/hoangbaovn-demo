@@ -1,10 +1,9 @@
 import { Metadata } from "next";
-
 import { notFound } from "next/navigation";
-import { BlogsGetProps } from "@/app/modules/types";
+
+import { DEFAULT_METADATA } from "@/lib/data";
 import blogService, { GetBlogsProps } from "@/lib/services/blog.service";
 import BlogDetailTemplate from "@/app/modules/blog/templates/blogdetail-template";
-import { DEFAULT_METADATA } from "@/lib/data";
 
 type Props = {
     params: { slug: string };

@@ -1,12 +1,12 @@
 import { Fragment } from "react";
 
-import { BlogsGetProps } from "../../types";
 import CardArticle from "../../home/components/CardArticle";
+import { GetBlogsProps } from "@/lib/services/blog.service";
 import SidebarLeftTagDetail from "../components/SidebarLeftTagDetail";
 import SidebarRightTagDetail from "../components/SidebarRightTagDetail";
 
 interface TagDetailTemplateProps {
-    blogs: BlogsGetProps[];
+    blogs: GetBlogsProps[];
 }
 const TagDetailTemplate = ({ blogs }: TagDetailTemplateProps) => {
     return (

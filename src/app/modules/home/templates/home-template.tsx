@@ -1,14 +1,13 @@
 import { Fragment, Suspense } from "react";
 
-import { BlogsGetProps } from "../../types";
 import SideBarLeft from "../components/SidebarLeft";
 import CardArticle from "../components/CardArticle";
 import SideBarRight from "../components/SidebarRight";
 import SkeletonCardItem from "../../skeletons/components/skeleton-card-item";
-import { API_BASE_URL } from "@/lib/data";
+import { GetBlogsProps } from "@/lib/services/blog.service";
 
 interface HomeTemplateProps {
-    blogs: BlogsGetProps[]
+    blogs: GetBlogsProps[]
 }
 
 const HomeTemplate = ({ blogs } : HomeTemplateProps) => {

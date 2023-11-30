@@ -1,8 +1,11 @@
+"use client"
+
 import Link from "next/link";
 import Image from "next/image";
+import { useSession } from "next-auth/react";
 
-import { BlogsGetProps } from "@/app/modules/types";
 import convertTime from "@/app/modules/util/convertTime";
+import { GetBlogsProps } from "@/lib/services/blog.service";
 import TagsBlog from "@/app/modules/common/components/TagBlog";
 import { IconShare, IconVerify } from "@/app/modules/common/icons";
 import AvatarRank from "@/app/modules/common/components/AvatarRank";
@@ -16,16 +19,18 @@ const PostData = {
 }
 
 interface CardArticleProps {
-    blog: BlogsGetProps
+    blog: GetBlogsProps
 }
 
 const CardArticle = ({blog} : CardArticleProps) => {
+
+    const { data: session, status } = useSession();
 
     return (
         <article className="md:px-3 flex mb-4 relative">
             <div className="bg-white md:rounded-md w-full overflow-hidden shadow-sm outline-2 outline-blue-500 hover:outline-dashed">
                 <div className="flex px-4 pt-4">
-                    <Link href={`/`}>
+                    <Link href={`/user/${blog.author.username}`}>
                         <AvatarRank rank={1}>
                             <Image
                                 width={48}
@@ -38,7 +43,7 @@ const CardArticle = ({blog} : CardArticleProps) => {
                     </Link>
                     <div className="ml-2">
                         <div className="flex items-center mb-1">
-                            <Link href={`/`}>
+                            <Link href={`/user/${blog.author.username}`}>
                                 <p className="hover:underline font-medium">
                                     {blog.author.name}
                                 </p>

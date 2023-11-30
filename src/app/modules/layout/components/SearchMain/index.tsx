@@ -24,13 +24,13 @@ const SearchMain = () => {
         try {
             const blogsRes = await blogService.findAll(`search=${text}`);
 
-            console.log(blogsRes)
-
             if(blogsRes?.success) {
                 setResultSearch(blogsRes.blogs);
             }
+
+            setIsLoadingSearch(false);
         } catch (error) {
-            
+            setIsLoadingSearch(false);
         }
     }
 
@@ -38,8 +38,8 @@ const SearchMain = () => {
         if (valueSearchDebounce === "") {
             setResultSearch([]);
         } else if (valueSearchDebounce) {
-            eventSearch(valueSearchDebounce);
             setIsLoadingSearch(true);
+            eventSearch(valueSearchDebounce);
         }
 
     }, [valueSearchDebounce]);
@@ -68,6 +68,7 @@ const SearchMain = () => {
                         className="w-full outline-none border-none py-2 px-2"
                         placeholder="Tìm kiếm..."
                     />
+                    { isLoadingSearch && (<span className="loading-search"></span>) }
                 </div>
                 <div className="overflow-y-auto py-2">
                     <ul className="py-2 px-2">

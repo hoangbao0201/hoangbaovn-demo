@@ -2,6 +2,24 @@ import axios from "axios";
 import { API_BASE_URL } from "../data";
 
 
+export interface GetUserDetailProps {
+    userId: number,
+    username: string,
+    name: string,
+    email: string,
+    avatarUrl: string,
+    createdAt: Date,
+    description: string | null,
+    rank: number,
+    role: {
+        roleId: number,
+        roleName: "admin" | "user"
+    },
+    _count: {
+        blogs: number,
+        userSaves: number
+    }
+}
 class UserService {
 
     async loginUser(accout: string, password: string) : Promise<any> {
@@ -14,6 +32,19 @@ class UserService {
                 email: accout,
                 password: password
             });
+            return user.data;
+        } catch (error) {
+            return {
+                success: false,
+                message: "error user successful",
+                error: error
+            };
+        }
+    }
+
+    async userDetail(username: string) : Promise<any> {
+        try {
+            const user = await axios.get(`${API_BASE_URL}/api/users/${username}`);
             return user.data;
         } catch (error) {
             return {

@@ -6,7 +6,9 @@ export interface TagProps {
     name: string;
     slug: string;
 }
-export interface DataCreateBlogProps {
+export type BlogTagProps = { tags: TagProps }
+
+export interface PostCreateBlogProps {
     title: string;
     summary: string;
     content: string;
@@ -82,7 +84,7 @@ class BlogService {
         data,
         token,
     }: {
-        data: DataCreateBlogProps;
+        data: PostCreateBlogProps;
         token: string;
     }): Promise<any> {
         try {

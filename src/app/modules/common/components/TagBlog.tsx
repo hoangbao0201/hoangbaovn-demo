@@ -1,11 +1,11 @@
 "use client"
 
+import { BlogTagProps } from "@/lib/services/blog.service"
 import Link from "next/link"
-import { BlogTagsProps } from "../../types"
 
 
 interface TagsBlogProps {
-    listTag: BlogTagsProps[]
+    listTag: BlogTagProps[]
     className?: string
 }
 

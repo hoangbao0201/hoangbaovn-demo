@@ -13,6 +13,8 @@ import Modal from "@/app/modules/common/components/modal";
 import blogService from "@/lib/services/blog.service";
 import { textToSlug } from "@/app/modules/util/testToSlug";
 import { IconAlertCircle } from "@/app/modules/common/icons";
+import { API_BASE_URL } from "@/lib/data";
+import axios from "axios";
 
 interface Option {
     label: string;
@@ -122,6 +124,20 @@ const CreateBlog = () => {
         } catch (error) {}
     };
 
+    const handleUploadThumbnailBlog = async () => {
+        try {
+            if(!fileThumbnail.dataImage) {
+                return;
+            }
+            const formData = new FormData();
+            formData.append("image", fileThumbnail.dataImage);
+            const imageRes = await axios.post(`${API_BASE_URL}/api/images/cloudinary/upload?width=1500&height=1500`, formData);
+            console.log(imageRes)
+        } catch (error) {
+            
+        }
+    }
+
     return (
         <main className="">
             <div
@@ -208,7 +224,12 @@ const CreateBlog = () => {
                                 type="file"
                                 onChange={eventOnchangeThumbnailBlog}
                             />
-                            
+                            <button
+                                onClick={handleUploadThumbnailBlog}
+                                className="border rounded-md px-3 py-1 bg-blue-600 active:scale-105"
+                            >
+                                Upload
+                            </button>
                         </div>
                         <div className="md:w-3/5 flex flex-col justify-between">
                             <div className="">

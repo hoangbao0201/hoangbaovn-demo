@@ -14,15 +14,18 @@ class TagService {
 
     async findAll(query?: string): Promise<any> {
         try {
-            const tags = await axios.get(
+            const tagsRes = await fetch(
                 `${API_BASE_URL}/api/tags?${query}`,
                 {
+                    method: "GET",
+                    next: { revalidate: 60 * 60 }
                     // headers: {
                     //     Authorization: `Bearer ${token}`
                     // }
                 }
             );
-            return tags.data;
+            const tags = await tagsRes.json();
+            return tags;
         } catch (error) {
             return {
                 success: false,

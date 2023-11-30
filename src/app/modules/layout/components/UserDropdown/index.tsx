@@ -48,7 +48,7 @@ const UserDropdown = () => {
                                 <Menu.Item>
                                     {({ active }) => (
                                         <Link
-                                            href={`/`}
+                                            href={`/user/${session?.user.username}`}
                                             className={`${
                                                 active
                                                     ? "bg-gray-100"
@@ -73,6 +73,7 @@ const UserDropdown = () => {
                                     <Menu.Item>
                                         {({ active }) => (
                                             <Link
+                                                target="_blank"
                                                 href={`/admin/dashboarch`}
                                                 className={`${
                                                     active

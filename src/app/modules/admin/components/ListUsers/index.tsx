@@ -38,7 +38,6 @@ const ListUser = ({}: ListUserProps) => {
                         <th className="w-1/12">UserId</th>
                         <th className="w-1/12">Name</th>
                         <th className="w-1/12">Username</th>
-                        <th className="w-6/12">Password</th>
                         <th className="w-1/12">Rank</th>
                         <th className="w-1/12">Candy</th>
                         <th className="w-1/12">CreateAt</th>
@@ -52,25 +51,22 @@ const ListUser = ({}: ListUserProps) => {
                                     key={user.userId}
                                     className="[&>td]:px-3 [&>td]:py-2 [&>td]:border-x [&>td]:border-b [&>td>div]:line-clamp-1"
                                 >
-                                    <td className="w-1/12 line-clamp-1">
+                                    <td>
                                         <div>{user.userId}</div>
                                     </td>
-                                    <td className="w-1/12 line-clamp-1">
+                                    <td>
                                         <div>{user.name}</div>
                                     </td>
-                                    <td className="w-1/12 line-clamp-1">
+                                    <td>
                                         <div>{user.username}</div>
                                     </td>
-                                    <td className="w-6/12 line-clamp-1">
-                                        <div>{user.password}</div>
-                                    </td>
-                                    <td className="w-1/12 line-clamp-1">
+                                    <td>
                                         <div>{user.rank}</div>
                                     </td>
-                                    <td className="w-1/12 line-clamp-1">
+                                    <td>
                                         <div>{user.candy}</div>
                                     </td>
-                                    <td className="w-1/12 line-clamp-1">
+                                    <td>
                                         <div>
                                             {convertTime(user.createdAt)}
                                         </div>

@@ -4,6 +4,10 @@ import Link from "next/link";
 import Image from "next/image";
 import { ReactNode } from "react";
 import { useSession } from "next-auth/react";
+import { usePathname } from "next/navigation";
+
+import clsx from "clsx";
+
 import { SideBarAdminLayoutData } from "@/data/constants";
 
 interface AdminLayoutProps {
@@ -12,6 +16,7 @@ interface AdminLayoutProps {
 
 const AdminLayout = ({ children } : AdminLayoutProps) => {
 
+    const pathname = usePathname()
     const { data: session, status } = useSession();
 
     return (
@@ -47,11 +52,19 @@ const AdminLayout = ({ children } : AdminLayoutProps) => {
                                         {
                                             item.children.map((child, index) => {
                                                 return (
-                                                    <Link key={index} href={`${child.link}`}>
-                                                        <div className="mx-3 px-4 py-2 rounded-md hover:bg-gray-100 group">
-                                                            <div className="transition-all translate-x-0 group-hover:translate-x-1">{child.title}</div>
-                                                        </div>
-                                                    </Link>
+                                                    <div key={child.pathname} className="mx-3 mb-1">
+                                                        <Link key={index} href={`${child.link}`}>
+                                                            <div className={clsx(
+                                                                "px-4 py-2 rounded-md",
+                                                                {
+                                                                    "bg-blue-500 text-white": child.pathname === pathname,
+                                                                    "group hover:bg-gray-100": child.pathname !== pathname,
+                                                                }
+                                                            )}>
+                                                                <div className="transition-all translate-x-0 group-hover:translate-x-1">{child.title}</div>
+                                                            </div>
+                                                        </Link>
+                                                    </div>
                                                 )
                                             })
                                         }

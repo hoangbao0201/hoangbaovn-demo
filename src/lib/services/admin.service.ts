@@ -17,13 +17,15 @@ class AdminService {
 
     async getAllUser(token: string) : Promise<any> {
         try {
-            const users = await axios.get(`${API_BASE_URL}/api/admin/users`, {
+            const usersRes = await fetch(`${API_BASE_URL}/api/admin/users`, {
+                method: "GET",
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',
                 },
             });
-            return users.data;
+            const users = await usersRes.json();
+            return users;
         } catch (error) {
             return {
                 success: false,

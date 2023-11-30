@@ -1,13 +1,11 @@
 "use client";
 
-import Link from "next/link";
-import Image from "next/image";
+import { signIn } from "next-auth/react";
 
-import { signIn, useSession } from "next-auth/react";
+import clsx from "clsx";
 
 import ButtonAuth from "../button-auth";
 import { ChangeEvent, useState } from "react";
-import userService from "@/lib/services/user.service";
 
 const Login = () => {
     // const { data: session, status } = useSession();
@@ -17,6 +15,7 @@ const Login = () => {
         accout: "hoangbao020103@gmail.com",
         password: "baodeptrai199",
     });
+    const [loadingLogin, setLoadingLogin] = useState(false);
 
     const eventChangeValueInput = (e: ChangeEvent<HTMLInputElement>) => {
         setDataLogin({
@@ -26,14 +25,18 @@ const Login = () => {
     };
 
     const handleLogin = async () => {
+        setLoadingLogin(true);
         try {
             const { accout, password } = dataLogin;
-            signIn("credentials", {
+            await signIn("credentials", {
                 redirect: false,
                 email: accout,
-                password: password
+                password: password,
             });
-        } catch (error) {}
+            setLoadingLogin(false);
+        } catch (error) {
+            setLoadingLogin(false);
+        }
     };
 
     const handleSigninGithub = async () => {
@@ -42,8 +45,19 @@ const Login = () => {
 
     return (
         <main className="my-4" style={{ minHeight: "calc(100vh - 174px)" }}>
-            <div className="max-w-xl w-full mx-auto">
-                <div className="bg-white rounded-md shadow-sm border px-5 py-5">
+            <div className={clsx(
+                "bg-white rounded-md shadow-sm border max-w-xl w-full mx-auto overflow-hidden",
+                {
+                    "pointer-events-none opacity-70": loadingLogin
+                }
+            )}>
+                <div className={clsx(
+                    "loading-bar",
+                    {
+                        "before:content-none": !loadingLogin
+                    }
+                )}></div>
+                <div className="px-5 py-5">
                     <div className="font-semibold text-center mb-3">
                         HOANGBAO
                     </div>

@@ -6,7 +6,7 @@ export const API_BASE_URL = process.env.NODE_ENV == "production"
 export const DEFAULT_METADATA = {
     nameWeb: "HOANGBAOVN",
     tags: ["hoangbaovn", "webdev"],
-    webUrl: "http://localhost:3000"
+    webUrl: "https://hoangbao.vercel.app"
 }
 
 export const REVALIDATE_TIME = 3 * 60 * 60; //3h

@@ -25,7 +25,7 @@ const ContentBlogDetail = ({ blog } : ContentBlogDetailProps) => {
     }
     return (
         <div className="md:px-3">
-            <div className="bg-white rounded-md shadow-sm overflow-hidden">
+            <div className="bg-white md:rounded-md shadow-sm overflow-hidden">
                 <article className="">
                     <header className="mb-4">
                         <div className="mb-6">

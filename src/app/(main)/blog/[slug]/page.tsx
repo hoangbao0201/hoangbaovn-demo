@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { DEFAULT_METADATA } from "@/lib/data";
+import { API_BASE_URL, DEFAULT_METADATA } from "@/lib/data";
 import blogService, { GetBlogsProps } from "@/lib/services/blog.service";
 import BlogDetailTemplate from "@/app/modules/blog/templates/blogdetail-template";
 
@@ -38,7 +38,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
             url: `${DEFAULT_METADATA.webUrl}/blog/${params.slug}`,
             title: blog.title,
             description: blog.summary,
-            images: [{ url: blog.imageUrl }],
+            images: [{ url: blog?.imageUrl || `${DEFAULT_METADATA.webUrl}/images/bg_blog.png` }],
         },
         twitter: {
             card: "summary_large_image",
@@ -46,7 +46,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
             creator: `@${blog.author.username}`,
             title: blog.title,
             description: blog.summary,
-            images: ["http://localhost:3000/images/bg_blog.png"],
+            images: [`${DEFAULT_METADATA.webUrl}/images/bg_blog.png`],
         },
         alternates: {
             canonical: `${DEFAULT_METADATA.webUrl}/blog/${params.slug}`,

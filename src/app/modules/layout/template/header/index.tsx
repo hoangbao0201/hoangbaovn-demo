@@ -8,6 +8,7 @@ import { useSession } from "next-auth/react";
 import SearchMain from "../../components/SearchMain";
 import UserDropdown from "../../components/UserDropdown";
 import { IconBell, IconPen } from "@/app/modules/common/icons";
+import NavbarCollapse from "../../components/NavbarCollapse";
 
 
 interface HeaderProps {
@@ -21,6 +22,8 @@ const Header = ({ isDynamic = true }) => {
         <header className={clsx("w-full bg-white shadow-sm z-30 top-0 left-0 right-0", { "sticky":isDynamic })}>
             <div className="max-w-7xl w-full h-[60px] mx-auto px-3 flex items-center">
 
+                <NavbarCollapse />
+                
                 <p className="text-lg font-semibold flex flex-shrink-0 items-center">
                     <Link href={`/`}>HOANGBAO</Link>
                     <span className="mx-3 inline h-5 w-px bg-gray-300/60"></span>
